@@ -17,6 +17,8 @@ public partial class _Default : System.Web.UI.Page
 
     protected void BtnLogin_Click(object sender, EventArgs e)
     {
+        if (!Page.IsValid) { return; }
+
         using (SqlConnection Con = new SqlConnection())
         {
             string Connectionstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AssetManagement;Integrated Security=True;Pooling=False";
@@ -35,15 +37,26 @@ public partial class _Default : System.Web.UI.Page
                 string Password = stringBuilder.ToString();
                 Sha1.Clear();
                 Con.Open();
-                using(SqlDataReader DataReader = Cmd.ExecuteReader())
+                using (SqlDataReader DataReader = Cmd.ExecuteReader())
                 {
                     if (DataReader.Read())
                     {
-                        string ActualPassword = (string)DataReader["password"];
-                        if (ActualPassword == Password)
+                        if ((string)DataReader["password"] == Password && (bool)DataReader["admin"] == true)
                         {
-                            Response.Redirect("Home.aspx");
+                            Response.Redirect("AdminHome.aspx");
                         }
+                        else if ((string)DataReader["password"] == Password && (bool)DataReader["admin"] == false)
+                        {
+                            Response.Redirect("UserHome.aspx");
+                        }
+                        else
+                        {
+                            LblError.Text = "Incorrect Username/Password";
+                        }
+                    }
+                    else
+                    {
+                        LblError.Text = "Incorrect Username/Password";
                     }
                 }
             }
