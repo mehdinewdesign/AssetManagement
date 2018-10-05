@@ -11,14 +11,4 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
-
-    protected void BtnLogin_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Home.aspx");
-    }
-
-    protected void BtnNewAccount_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("NewAccount.aspx");
-    }
 }

@@ -8,5 +8,6 @@
     Password:
     <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
     <asp:Button ID="BtnLogin" runat="server" Text="Button" OnClick="BtnLogin_Click" />
+    <asp:Button ID="BtnNewAccount" runat="server" Text="Create New Account" OnClick="BtnNewAccount_Click" />
 </asp:Content>
 
