@@ -5,10 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     Username:<br />
     <asp:TextBox ID="TxtName" runat="server"></asp:TextBox>
-    Password:<br />
+    <br />Password:<br />
     <asp:TextBox ID="TxtPassword1" runat="server" TextMode="Password"></asp:TextBox>
-    Confirm Password:<br />
-    <asp:TextBox ID="TxtPassword2" runat="server" TextMode="Password"></asp:TextBox>
-
+    <br />Confirm Password:<br />
+    <asp:TextBox ID="TxtPassword2" runat="server" TextMode="Password"></asp:TextBox><br />
+    <br /><asp:Button ID="BtnSubmit" runat="server" Text="Confirm" OnClick="BtnSubmit_Click" />
 </asp:Content>
 
