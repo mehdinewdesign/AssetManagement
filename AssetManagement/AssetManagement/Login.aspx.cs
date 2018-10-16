@@ -24,7 +24,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["Theme"] = DdlTheme.SelectedItem.Text;
+
     }
 
     protected void BtnLogin_Click(object sender, EventArgs e)
@@ -80,4 +80,17 @@ public partial class _Default : System.Web.UI.Page
         Response.Redirect("NewAccount.aspx");
     }
 
+
+    protected void BtnTheme_Click(object sender, EventArgs e)
+    {
+        if (DdlTheme.SelectedItem.Text == "Dark")
+        {
+            Session["Theme"] = "Dark";
+        }
+        else
+        {
+            Session["Theme"] = "Light";
+        }
+        Response.Redirect("Login.aspx");
+    }
 }
