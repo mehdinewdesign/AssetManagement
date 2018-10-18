@@ -9,10 +9,11 @@
         <asp:GridView ID="GVNotifications" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="AssetRequestDataSource" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:BoundField DataField="username" HeaderText="UserName" ReadOnly="true" />
-                <asp:BoundField DataField="itemname" HeaderText="ItemName" ReadOnly="true" />
-                <asp:BoundField DataField="granted" HeaderText="Status" />
-                <asp:CommandField ButtonType="Button" ShowEditButton="true" />
+                <asp:BoundField DataField="username" HeaderText="User Name" ReadOnly="true" />
+                <asp:BoundField DataField="itemname" HeaderText="Item Name" ReadOnly="true" />
+                <asp:BoundField DataField="allotdate" HeaderText="Allotment Date" ReadOnly="false" />
+                <asp:BoundField DataField="duedate" HeaderText="Due Date" ReadOnly="false" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" DeleteText="Reject" EditText="Enter Dates" UpdateText="Confirm" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -29,8 +30,13 @@
             ConnectionString="<%$connectionStrings:AssetManagement%>" 
             runat="server"
             SelectCommand="SELECT * FROM AssetRequest WHERE granted='False'"
-            UpdateCommand="UPDATE AssetRequest SET granted='True' WHERE id=@id"
-            ></asp:SqlDataSource>
+            UpdateCommand="UPDATE AssetRequest SET granted=@grant WHERE id=@id"
+            DeleteCommand="DELETE FROM AssetRequest WHERE id=@id"
+            >
+            <UpdateParameters>
+                
+            </UpdateParameters>
+        </asp:SqlDataSource>
     </asp:Panel>
 </asp:Content>
 
