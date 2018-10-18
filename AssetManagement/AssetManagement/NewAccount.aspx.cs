@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -35,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
         int Num = 0;
         using (SqlConnection Con = new SqlConnection())
         {
-            string Connectionstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AssetManagement;Integrated Security=True;Pooling=False";
+            string Connectionstring = ConfigurationManager.ConnectionStrings["AssetManagement"].ConnectionString;
             Con.ConnectionString = Connectionstring;
             string CommandText = "INSERT INTO [User] (name,password,admin) VALUES (@name,@password,'False')";
             using (SqlCommand Cmd = new SqlCommand(CommandText, Con))
