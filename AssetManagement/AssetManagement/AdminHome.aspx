@@ -15,8 +15,8 @@
             <Columns>
                 <asp:BoundField DataField="username" HeaderText="User Name" ReadOnly="true" />
                 <asp:BoundField DataField="itemname" HeaderText="Item Name" ReadOnly="true" />
-                <asp:BoundField DataField="allotdate" HeaderText="Allotment Date" ReadOnly="false" />
-                <asp:BoundField DataField="duedate" HeaderText="Due Date" ReadOnly="false" />
+                <asp:BoundField DataField="allotdate" HeaderText="Allotment Date" ReadOnly="false" DataFormatString="{0:d}" />
+                <asp:BoundField DataField="duedate" HeaderText="Due Date" ReadOnly="false" DataFormatString="{0:d}" />
                 <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" DeleteText="Reject" EditText="Enter Dates" UpdateText="Confirm" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
@@ -61,7 +61,13 @@
             <SortedAscendingHeaderStyle BackColor="#506C8C" />
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-        </asp:GridView>
+        </asp:GridView><br />
+        Add New Items:<br />
+        Name Of Item:<br />
+        <asp:TextBox ID="TxtName" runat="server"></asp:TextBox><br />
+        Quantity Of Item:<br />
+        <asp:TextBox ID="TxtQuantity" runat="server"></asp:TextBox><br />
+        <asp:Button ID="BtnInsert" runat="server" Text="Insert" OnClick="BtnInsert_Click" /><br />
         <asp:SqlDataSource ID="ItemsDataSource" 
             ConnectionString="<%$connectionStrings:AssetManagement%>" 
             runat="server"
@@ -69,6 +75,10 @@
             UpdateCommand="UPDATE Items SET quantity=@quantity WHERE name=@name"
             InsertCommand="INSERT INTO Items(name,quantity) VALUES(@name,@quantity)" 
             DeleteCommand="DELETE FROM Items WHERE name=@name" >
+            <InsertParameters>
+                <asp:ControlParameter ControlID="TxtName" Name="name" Type="String" />
+                <asp:ControlParameter ControlID="TxtQuantity" Name="quantity" Type="Int32" />
+            </InsertParameters>
         </asp:SqlDataSource>
     </asp:Panel>
 </asp:Content>

@@ -60,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
                         }
                         else if ((string)DataReader["password"] == Password && (bool)DataReader["admin"] == false)
                         {
-                            Response.Redirect("UserHome.aspx");
+                            Response.Redirect("UserHome.aspx?u="+Server.UrlEncode(DataReader["name"].ToString()));
                         }
                         else
                         {
