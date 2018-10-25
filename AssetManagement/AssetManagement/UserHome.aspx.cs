@@ -136,4 +136,16 @@ public partial class _Default : System.Web.UI.Page
 
         }
     }
+
+    protected void GVAsset_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DateTime DueDate = (DateTime)DataBinder.Eval(e.Row.DataItem, "duedate");
+            if (DueDate < DateTime.Now)
+            {
+                e.Row.BackColor = System.Drawing.Color.Red;
+            }
+        }
+    }
 }

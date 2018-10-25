@@ -27,7 +27,7 @@
 
     <asp:Panel runat="server" >
         Assets Currently Holding:<br />
-        <asp:GridView ID="GVAsset" DataSourceID="AssetRequestDataSource" DataKeyNames="id" runat="server" AutoGenerateColumns="False" OnRowDeleting="GVAsset_RowDeleting">
+        <asp:GridView ID="GVAsset" DataSourceID="AssetRequestDataSource" OnRowDataBound="GVAsset_RowDataBound" DataKeyNames="id" runat="server" AutoGenerateColumns="False" OnRowDeleting="GVAsset_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="itemname" HeaderText="Item Name" />
                 <asp:BoundField DataField="allotdate" HeaderText="Allotment Date" DataFormatString="{0:d}" />
