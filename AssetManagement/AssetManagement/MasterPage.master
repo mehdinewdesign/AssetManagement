@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:Panel runat="server">
-            <asp:Image ID="Image1" ImageUrl="Images/Background.jpg" Height="200px" Width="100%" runat="server" />
+            <asp:Image ID="Image1" ImageUrl="Images/Background.jpg" Height="40%" Width="100%" runat="server" />
         </asp:Panel>
         <div >
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

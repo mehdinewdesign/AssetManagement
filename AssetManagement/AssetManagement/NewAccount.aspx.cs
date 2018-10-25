@@ -11,11 +11,13 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    HttpCookie Cookie;
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        if (Session["Theme"] != null)
+        Cookie = Request.Cookies["Theme"];
+        if (Cookie != null)
         {
-            Page.Theme = Session["Theme"].ToString();
+            Page.Theme = Cookie["Theme"].ToString();
         }
         else
         {

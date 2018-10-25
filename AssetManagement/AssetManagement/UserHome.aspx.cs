@@ -10,12 +10,14 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    DataTable Cart = new DataTable("Cart");
+    DataTable Cart = new DataTable();
+    HttpCookie Cookie;
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        if (Session["Theme"] != null)
+        Cookie = Request.Cookies["Theme"];
+        if (Cookie != null)
         {
-            Page.Theme = Session["Theme"].ToString();
+            Page.Theme = Cookie["Theme"].ToString();
         }
         else
         {
@@ -25,9 +27,13 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Cart.Columns.Add("name", typeof(String));
         if (!IsPostBack)
         {
-            Cart.Columns.Add(new DataColumn("Item Name"));
+            //Cart.Columns.AddRange(new DataColumn[1] { new DataColumn("Item Name",typeof(string))});
+            
+            GVCart.DataSource = Cart;
+            GVCart.DataBind();
             BtnCart.Visible = false;
             LblName.Text += Request.QueryString["u"];
             LblName.Text += "!";
@@ -43,7 +49,7 @@ public partial class _Default : System.Web.UI.Page
                     {
                         while (DataReader.Read())
                         {
-                            DdlItemName.Items.Add(new ListItem(DataReader["name"].ToString()));
+                            DdlItemName.Items.Add(DataReader["name"].ToString());
                         }
                     }
                     
@@ -91,8 +97,9 @@ public partial class _Default : System.Web.UI.Page
     {
         //CartData cartData = new CartData();
         //Session["Cart"] = cartData;
-        //Cart.Rows.Add(DdlItemName.SelectedItem.Text);
-        //GVCart.DataSource = Cart;
-        //GVCart.DataBind();
+        Cart.Rows.Add(DdlItemName.SelectedItem.Text);
+        Cart.Rows.Add("One");
+        GVCart.DataSource = Cart;
+        GVCart.DataBind();
     }
 }
