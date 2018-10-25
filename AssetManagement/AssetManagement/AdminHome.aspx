@@ -19,7 +19,7 @@
                         Allotment Date:<br />
                         <asp:TextBox ID="TxtAllot" Text='<%#Bind("allotdate")%>' runat="server"></asp:TextBox><br />
                         <asp:CompareValidator ID="CompareValidator1" ControlToValidate="TxtAllot" Operator="DataTypeCheck" Type="Date" Display="Dynamic" runat="server" ForeColor="Red" ErrorMessage="Enter Date In DD-MM-YYYY Format"></asp:CompareValidator>
-                        <asp:CustomValidator ID="CustomValidator1" ControlToValidate="TxtAllot" OnServerValidate="CustomValidator1_ServerValidate" Display="Dynamic" ForeColor="Red" runat="server" ErrorMessage="Invalid Date"></asp:CustomValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="TxtAllot" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Invalid Allotment Date"></asp:RequiredFieldValidator>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -27,7 +27,8 @@
                         Due Date:<br />
                         <asp:TextBox ID="TxtDue" Text='<%#Bind("duedate")%>' runat="server"></asp:TextBox><br />
                         <asp:CompareValidator ID="CompareValidator2" ControlToValidate="TxtDue" Operator="DataTypeCheck" Type="Date" Display="Dynamic" runat="server" ForeColor="Red" ErrorMessage="Enter Date In DD-MM-YYYY Format"></asp:CompareValidator>
-                        <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="TxtDue" OnServerValidate="CustomValidator2_ServerValidate" Display="Dynamic" ForeColor="Red" ErrorMessage="Invalid Date"></asp:CustomValidator>
+                        <asp:CompareValidator ID="CompareValidator3" Operator="GreaterThanEqual" ControlToCompare="TxtAllot" ControlToValidate="TxtDue" Type="Date" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Invalid Due Date"></asp:CompareValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtDue" ForeColor="Red" Display="Dynamic" ErrorMessage="Invalid Due Date"></asp:RequiredFieldValidator>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:CommandField ButtonType="Button" ShowEditButton="true"  EditText="Enter Dates" UpdateText="Confirm" />

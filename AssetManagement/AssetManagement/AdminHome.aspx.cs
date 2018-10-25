@@ -113,14 +113,4 @@ public partial class _Default : System.Web.UI.Page
         Response.Redirect("AdminHome.aspx");
     }
 
-    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-        TextBox TxtAllot = (TextBox)GVNotifications.Controls[2];
-        
-    }
-
-    protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-
-    }
 }

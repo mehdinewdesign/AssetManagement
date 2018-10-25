@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -101,5 +102,38 @@ public partial class _Default : System.Web.UI.Page
         Cart.Rows.Add("One");
         GVCart.DataSource = Cart;
         GVCart.DataBind();
+    }
+
+    protected void GVAsset_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        int quantity = 0;
+        using (SqlConnection Con = new SqlConnection(WebConfigurationManager.ConnectionStrings["AssetManagement"].ConnectionString))
+        {
+            using (SqlCommand Cmd = new SqlCommand("SELECT quantity FROM [Items] WHERE name=@name", Con))
+            {
+                Cmd.Parameters.AddWithValue("@name", GVAsset.Rows[e.RowIndex].Cells[0].Text);
+                Con.Open();
+                using (SqlDataReader DataReader = Cmd.ExecuteReader())
+                {
+                    if (DataReader.Read())
+                    {
+                        quantity = (int)DataReader["quantity"];
+                        quantity++;
+                    }
+                }
+            }
+
+        }
+        using (SqlConnection Con = new SqlConnection(WebConfigurationManager.ConnectionStrings["AssetManagement"].ConnectionString))
+        {
+            using (SqlCommand Cmd = new SqlCommand("UPDATE [Items] SET quantity=@quantity WHERE name=@name", Con))
+            {
+                Cmd.Parameters.AddWithValue("@quantity", quantity.ToString());
+                Cmd.Parameters.AddWithValue("@name", GVAsset.Rows[e.RowIndex].Cells[0].Text);
+                Con.Open();
+                Cmd.ExecuteNonQuery();
+            }
+
+        }
     }
 }
