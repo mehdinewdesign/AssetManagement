@@ -3,23 +3,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:Panel runat="server">
-        <asp:DropDownList ID="DdlTheme" runat="server">
-            <asp:ListItem Text="Light" />
-            <asp:ListItem Text="Dark" />
-        </asp:DropDownList>
-        <asp:Button ID="BtnTheme" runat="server" Text="Select Theme" CausesValidation="false" OnClick="BtnTheme_Click" />
-    </asp:Panel>
-    <asp:Panel Wrap="true" HorizontalAlign="Center" runat="server">
-        Username:<br />
-        <asp:TextBox ID="TxtUsername" runat="server"></asp:TextBox><br />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ForeColor="Red" ControlToValidate="TxtUserName" runat="server" ErrorMessage="Name Cannot Be Empty"></asp:RequiredFieldValidator><br />
-        Password:<br />
-        <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ForeColor="Red" ControlToValidate="TxtPassword" runat="server" ErrorMessage="Password Cannot Be Empty"></asp:RequiredFieldValidator><br />
-        <asp:Button ID="BtnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" /><br />
-        <asp:Label ID="LblError" runat="server" ForeColor="Red" Text=""></asp:Label><br />
-        <asp:Button ID="BtnNewAccount" runat="server" Text="Create New Account" OnClick="BtnNewAccount_Click" CausesValidation="false" />
-    </asp:Panel>
+    <div class=" offset-3 col-6">
+        <h2>Login</h2>
+        <div class="row">
+            <asp:Label runat="server" ID="err" CssClass="alert-danger offset-3" />
+        </div>
+        <hr />
+        <div class="form-group row">
+            <div class="col-3">
+                <label for="username">Username</label>
+            </div>
+            <asp:TextBox ID="TxtUsername" runat="server" CssClass="form-control col-7" />
+            <asp:RequiredFieldValidator ID="rfv2" runat="server" ControlToValidate="TxtUsername" 
+                ErrorMessage="*Required Field" Display="Static" CssClass="text-danger offset-3" />
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label for="pwd">Password</label>
+            </div>
+            <asp:TextBox ID="TxtPassword" runat="server" CssClass="form-control col-7" TextMode="Password" />
+            <asp:RequiredFieldValidator ID="rfv1" runat="server" Display="Static" ErrorMessage="*Required Field" 
+                 ControlToValidate="TxtPassword" CssClass="text-danger offset-3" />
+        </div>
+        <br />
+        <div class="row offset-4">
+            <asp:Label ID="LblError" runat="server" ForeColor="Red" Text=""></asp:Label><br />
+        </div>
+        <div class="row offset-4">
+            <asp:Button ID="BtnLogin" runat="server" CssClass="btn btn-primary" OnClick="BtnLogin_Click" Text="Enter" />
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+            <asp:Button ID="BtnNewAccount" runat="server" CssClass="btn btn-primary" OnClick="BtnNewAccount_Click" CausesValidation="false" Text="New Account" />
+        </div>
+    </div>
 </asp:Content>
-

@@ -328,3 +328,8 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Bootstrap add-ons
+/AssetManagement/packages
+/AssetManagement/AssetManagement/Content
+/AssetManagement/AssetManagement/Scripts

@@ -11,18 +11,9 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    HttpCookie Cookie;
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        Cookie = Request.Cookies["Theme"];
-        if (Cookie != null)
-        {
-            Page.Theme = Cookie["Theme"].ToString();
-        }
-        else
-        {
-            Page.Theme = "Light";
-        }
+        Page.Theme = "Light";
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -58,11 +49,14 @@ public partial class _Default : System.Web.UI.Page
                     {
                         if ((string)DataReader["password"] == Password && (bool)DataReader["admin"] == true)
                         {
+                            Session["PageType"] = "Admin";
                             Response.Redirect("AdminHome.aspx");
                         }
                         else if ((string)DataReader["password"] == Password && (bool)DataReader["admin"] == false)
                         {
-                            Response.Redirect("UserHome.aspx?u="+Server.UrlEncode(DataReader["name"].ToString()));
+                            Session["PageType"] = "User";
+                            Session["UserName"] = TxtUsername.Text;
+                            Response.Redirect("UserHome.aspx");
                         }
                         else
                         {
@@ -84,23 +78,23 @@ public partial class _Default : System.Web.UI.Page
     }
 
 
-    protected void BtnTheme_Click(object sender, EventArgs e)
-    {
-        Cookie = Request.Cookies["Theme"];
-        if(Cookie == null)
-        {
-            Cookie = new HttpCookie("Theme");
-            Cookie.Expires = DateTime.Now.AddDays(30);
-        }
-        if (DdlTheme.SelectedItem.Text == "Dark")
-        {
-            Cookie["Theme"] = "Dark";
-        }
-        else
-        {
-            Cookie["Theme"] = "Light";
-        }
-        Response.Cookies.Add(Cookie);
-        Response.Redirect("Login.aspx");
-    }
+    //protected void BtnTheme_Click(object sender, EventArgs e)
+    //{
+    //    Cookie = Request.Cookies["Theme"];
+    //    if(Cookie == null)
+    //    {
+    //        Cookie = new HttpCookie("Theme");
+    //        Cookie.Expires = DateTime.Now.AddDays(30);
+    //    }
+    //    if (DdlTheme.SelectedItem.Text == "Dark")
+    //    {
+    //        Cookie["Theme"] = "Dark";
+    //    }
+    //    else
+    //    {
+    //        Cookie["Theme"] = "Light";
+    //    }
+    //    Response.Cookies.Add(Cookie);
+    //    Response.Redirect("Login.aspx");
+    //}
 }

@@ -10,24 +10,9 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    HttpCookie Cookie;
-
-    protected void Page_PreRender(object sender, EventArgs e)
-    {
-
-    }
-
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        Cookie = Request.Cookies["Theme"];
-        if (Cookie != null)
-        {
-            Page.Theme = Cookie["Theme"].ToString();
-        }
-        else
-        {
-            Page.Theme = "Light";
-        }
+        Page.Theme = "Light";
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -35,14 +20,14 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
-    protected void BtnInsert_Click(object sender, EventArgs e)
-    {
-        ItemsDataSource.InsertCommandType = SqlDataSourceCommandType.Text;
-        ItemsDataSource.Insert();
+    //protected void BtnInsert_Click(object sender, EventArgs e)
+    //{
+    //    ItemsDataSource.InsertCommandType = SqlDataSourceCommandType.Text;
+    //    ItemsDataSource.Insert();
 
-        TxtName.Text = "";
-        TxtQuantity.Text = "";
-    }
+    //    TxtName.Text = "";
+    //    TxtQuantity.Text = "";
+    //}
 
     protected void GVNotifications_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -108,9 +93,9 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-    protected void GVNotifications_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-    {
-        Response.Redirect("AdminHome.aspx");
-    }
+    //protected void GVNotifications_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    //{
+    //    Response.Redirect("AdminHome.aspx");
+    //}
 
 }

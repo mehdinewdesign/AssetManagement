@@ -5,15 +5,65 @@
 <html>
 <head runat="server">
     <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.0.0.js"></script>
+    <script src="Scripts/popper.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Panel runat="server">
-            <asp:Image ID="Image1" ImageUrl="Images/Background.jpg" Height="40%" Width="100%" runat="server" />
-        </asp:Panel>
-        <div >
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+            <div class="col-8">
+                <a class="navbar-brand" href="#">
+                    <span>Asset Management</span>
+                </a>
+                <ul class="navbar-nav">
+                    <%if ((string)Session["PageType"] != "Login")
+                        { %>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnLogout" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" OnClick="BtnLogout_Click" ForeColor="Red" Text="Logout" runat="server" />
+                    </li>
+                    <%} %>
+                    <%if ((string)Session["PageType"] == "Admin")
+                        {%>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnAdminHome" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" Text="Home" runat="server" OnClick="BtnNotifications_Click"></asp:Button>
+                    </li>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnAvailableItems" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" Text="Available Items" runat="server" OnClick="BtnAvailableItems_Click" />
+                    </li>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnNewItem" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" Text="New Item" OnClick="BtnNewItem_Click" runat="server"></asp:Button>
+                    </li>
+                    <%} %>
+                    <%else if ((string)Session["PageType"] == "User")
+                        {%>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnUserHome" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" runat="server" Text="Home" OnClick="BtnUserHome_Click"></asp:Button>
+                    </li>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnNewRequest" EnableTheming="false" CausesValidation="false" runat="server" Text="New Request" OnClick="BtnNewRequest_Click" class="btn btn-light"></asp:Button>
+                    </li>
+                    <%} %>
+                </ul>
+            </div>
+            <%--<div class="col-2">
+
+                <asp:DropDownList ID="DdlTheme" runat="server" CssClass="form-control">
+                    <asp:ListItem Text="Light"></asp:ListItem>
+                    <asp:ListItem Text="Dark"></asp:ListItem>
+                </asp:DropDownList>
+
+
+            </div>
+            <div class="col-2">
+                <asp:Button ID="BtnTheme" CausesValidation="false" runat="server" Text="Select Theme" OnClick="BtnTheme_Click" CssClass="btn btn-light" />
+            </div>--%>
+        </nav>
+        <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

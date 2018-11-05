@@ -11,18 +11,9 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    HttpCookie Cookie;
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        Cookie = Request.Cookies["Theme"];
-        if (Cookie != null)
-        {
-            Page.Theme = Cookie["Theme"].ToString();
-        }
-        else
-        {
-            Page.Theme = "Light";
-        }
+        Page.Theme = "Light";
     }
 
     protected void Page_Load(object sender, EventArgs e)
