@@ -22,7 +22,7 @@
             SelectCommand="SELECT * FROM AssetRequest WHERE granted='True' AND username=@name"
             DeleteCommand="DELETE AssetRequest WHERE id=@id">
             <SelectParameters>
-                <asp:SessionParameter Name="name" SessionField="UserName" Type="String" />
+                <asp:CookieParameter CookieName="Name" Name="name" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
     </div>

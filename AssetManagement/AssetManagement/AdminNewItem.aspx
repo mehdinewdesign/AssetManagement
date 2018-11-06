@@ -22,6 +22,9 @@
         <div class="row offset-4">
             <asp:Button ID="BtnInsert" runat="server" OnClick="BtnInsert_Click" CssClass="btn btn-primary" Text="Insert" />
         </div>
+        <div class="row offset-4">
+            <asp:Label ID="LblStatus" runat="server" Text=""></asp:Label>
+        </div>
         <asp:SqlDataSource ID="ItemsDataSource" 
             ConnectionString="<%$connectionStrings:AssetManagement%>" 
             runat="server"

@@ -20,7 +20,17 @@ public partial class _Default : System.Web.UI.Page
     protected void BtnInsert_Click(object sender, EventArgs e)
     {
         ItemsDataSource.InsertCommandType = SqlDataSourceCommandType.Text;
-        ItemsDataSource.Insert();
+        try
+        {
+            ItemsDataSource.Insert();
+            LblStatus.Text = "Successfully Added Item";
+            LblStatus.ForeColor = System.Drawing.Color.Green;
+        }
+        catch(Exception ex)
+        {
+            LblStatus.Text = "Cannot Add This Item";
+            LblStatus.ForeColor = System.Drawing.Color.Red;
+        }
 
         TxtName.Text = "";
         TxtQuantity.Text = "";

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
-    HttpCookie Cookie;
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["PageType"] == null)
@@ -20,7 +19,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void BtnLogout_Click(object sender, EventArgs e)
     {
         Session["PageType"] = "Login";
-        Session["UserName"] = string.Empty;
+        //Session["UserName"] = string.Empty;
+        HttpCookie Cookie = Request.Cookies["Name"];
+        if (Cookie != null)
+        {
+            Cookie.Expires = DateTime.Now.AddDays(-1);
+        }
+        FormsAuthentication.SignOut();
         Response.Redirect("Login.aspx");
     }
 
@@ -50,23 +55,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Response.Redirect("UserNewRequest.aspx");
     }
 
-    //protected void BtnTheme_Click(object sender, EventArgs e)
-    //{
-    //    Cookie = Request.Cookies["Preferences"];
-    //    if (Cookie == null)
-    //    {
-    //        Cookie = new HttpCookie("Preferences");
-    //        Cookie.Expires = DateTime.Now.AddDays(30);
-    //    }
-    //    if (DdlTheme.SelectedItem.Text == "Dark")
-    //    {
-    //        Cookie["Theme"] = "Dark";
-    //    }
-    //    else
-    //    {
-    //        Cookie["Theme"] = "Light";
-    //    }
-    //    Response.Cookies.Add(Cookie);
-    //    Response.Redirect(Request.RawUrl);
-    //}
+    protected void BtnChangePwd_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ChangePassword.aspx");
+    }
 }

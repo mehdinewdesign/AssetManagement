@@ -20,15 +20,6 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
-    //protected void BtnInsert_Click(object sender, EventArgs e)
-    //{
-    //    ItemsDataSource.InsertCommandType = SqlDataSourceCommandType.Text;
-    //    ItemsDataSource.Insert();
-
-    //    TxtName.Text = "";
-    //    TxtQuantity.Text = "";
-    //}
-
     protected void GVNotifications_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) { return; }

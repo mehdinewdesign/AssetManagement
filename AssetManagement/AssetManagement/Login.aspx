@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class=" offset-3 col-6">
         <h2>Login</h2>
-        <div class="row">
-            <asp:Label runat="server" ID="err" CssClass="alert-danger offset-3" />
+        <div class="row">            
+            <asp:Label ID="LblError" runat="server" ForeColor="Red" Text=""></asp:Label>
         </div>
         <hr />
         <div class="form-group row">
@@ -26,9 +26,6 @@
                  ControlToValidate="TxtPassword" CssClass="text-danger offset-3" />
         </div>
         <br />
-        <div class="row offset-4">
-            <asp:Label ID="LblError" runat="server" ForeColor="Red" Text=""></asp:Label><br />
-        </div>
         <div class="row offset-4">
             <asp:Button ID="BtnLogin" runat="server" CssClass="btn btn-primary" OnClick="BtnLogin_Click" Text="Enter" />
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 

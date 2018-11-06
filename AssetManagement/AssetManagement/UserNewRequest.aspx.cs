@@ -84,12 +84,14 @@ public partial class _Default : System.Web.UI.Page
             string CommandText = "INSERT INTO AssetRequest(username,itemname) VALUES(@username,@itemname)";
             using (SqlCommand Cmd = new SqlCommand(CommandText, Con))
             {
-                Cmd.Parameters.AddWithValue("@username", (string)Session["UserName"]);
+                Cmd.Parameters.AddWithValue("@username", User.Identity.Name);
                 Cmd.Parameters.AddWithValue("@itemname", DdlItemName.SelectedItem.Text);
                 Con.Open();
                 int num = Cmd.ExecuteNonQuery();
 
             }
         }
+        LblAvailable.Text = DdlItemName.SelectedItem.Text + " Successfully Requested";
+        LblAvailable.ForeColor = System.Drawing.Color.Green;
     }
 }
