@@ -59,4 +59,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("ChangePassword.aspx");
     }
+
+    protected void BtnReportQuery_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AdminReportQuery.aspx");
+    }
 }

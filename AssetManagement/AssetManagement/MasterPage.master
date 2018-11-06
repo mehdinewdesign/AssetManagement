@@ -32,6 +32,9 @@
                     <li class="nav-item">
                         <asp:Button ID="BtnNewItem" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" Text="New Item" OnClick="BtnNewItem_Click" runat="server"></asp:Button>
                     </li>
+                    <li class="nav-item">
+                        <asp:Button ID="BtnReportQuery" EnableTheming="false" CausesValidation="false" CssClass="btn btn-light" runat="server" Text="Report Query" OnClick="BtnReportQuery_Click" />
+                    </li>
                     <%} %>
                     <%else if ((string)Session["PageType"] == "User")
                         {%>
