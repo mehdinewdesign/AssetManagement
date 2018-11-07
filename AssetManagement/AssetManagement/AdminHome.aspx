@@ -13,14 +13,14 @@
                     <asp:BoundField DataField="itemname" HeaderText="Item Name" ReadOnly="true" />
                     <asp:TemplateField HeaderText="Allotment Date">
                         <EditItemTemplate>                            
-                            <asp:TextBox ID="TxtAllot" EnableTheming="false" Text='<%#Bind("allotdate")%>' runat="server"></asp:TextBox><br />
+                            <asp:TextBox ID="TxtAllot" TextMode="Date" EnableTheming="false" Text='<%#Bind("allotdate")%>' runat="server"></asp:TextBox><br />
                             <asp:CompareValidator ID="CompareValidator1" ControlToValidate="TxtAllot" Operator="DataTypeCheck" Type="Date" Display="Dynamic" runat="server" ForeColor="Red" ErrorMessage="Enter Date In DD-MM-YYYY Format"></asp:CompareValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="TxtAllot" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Invalid Allotment Date"></asp:RequiredFieldValidator>
                         </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Due Date">
                         <EditItemTemplate>                            
-                            <asp:TextBox ID="TxtDue" EnableTheming="false" Text='<%#Bind("duedate")%>' runat="server"></asp:TextBox><br />
+                            <asp:TextBox ID="TxtDue" TextMode="Date" EnableTheming="false" Text='<%#Bind("duedate")%>' runat="server"></asp:TextBox><br />
                             <asp:CompareValidator ID="CompareValidator2" ControlToValidate="TxtDue" Operator="DataTypeCheck" Type="Date" Display="Dynamic" runat="server" ForeColor="Red" ErrorMessage="Enter Date In DD-MM-YYYY Format"></asp:CompareValidator>
                             <asp:CompareValidator ID="CompareValidator3" Operator="GreaterThanEqual" ControlToCompare="TxtAllot" ControlToValidate="TxtDue" Type="Date" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Invalid Due Date"></asp:CompareValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtDue" ForeColor="Red" Display="Dynamic" ErrorMessage="Invalid Due Date"></asp:RequiredFieldValidator>

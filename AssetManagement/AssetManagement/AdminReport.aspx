@@ -10,31 +10,24 @@
             <div class="col-3">
                 <asp:Label runat="server" ID="LblReport" Text=""></asp:Label>
             </div>
-            <%if (Request.QueryString["q"] == "1")
-                { %>
-            <asp:GridView ID="GVUsers" DataSourceID="DSUsers" AutoGenerateColumns="false" runat="server">
-                <Columns>
-                    <asp:BoundField HeaderText="Name" DataField="name" ReadOnly="true" />
-                </Columns>
-            </asp:GridView>
-            <%} %>
-            <%else if (Request.QueryString["q"] == "2")
-                { %>
-            <asp:GridView ID="GVItems" DataSourceID="DSRequest" AutoGenerateColumns="false" runat="server">
+            <asp:GridView ID="GVReport" runat="server" DataSourceID="DSRequest" AutoGenerateColumns="false">
                 <Columns>
                     <asp:BoundField DataField="username" HeaderText="User Name" ReadOnly="true" />
-                    <asp:BoundField DataField="itemname" HeaderText="Item Name" ReadOnly="true" />
+                    <asp:BoundField DataField="itemname" HeaderText="User Name" ReadOnly="true" />
                     <asp:BoundField DataField="allotdate" HeaderText="Allotment Date" ReadOnly="true" />
                     <asp:BoundField DataField="duedate" HeaderText="Due Date" ReadOnly="true" />
                 </Columns>
             </asp:GridView>
-            <%} %>
         </div>
         <%--<div class="row offset-4">
             
         </div>--%>
-        <asp:SqlDataSource ID="DSUsers" ConnectionString="<%$ConnectionStrings:AssetManagement %>" SelectCommand="SELECT name FROM [User] WHERE admin='false'" runat="server"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="DSRequest" ConnectionString="<%$ConnectionStrings:AssetManagement %>" SelectCommand="SELECT * FROM AssetRequest WHERE granted='true'" runat="server"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="DSRequest" ConnectionString="<%$ConnectionStrings:AssetManagement %>" runat="server">
+            <SelectParameters>
+                <asp:QueryStringParameter Name="start" QueryStringField="sd" />
+                <asp:QueryStringParameter Name="end" QueryStringField="ed" />
+            </SelectParameters>
+        </asp:SqlDataSource>
     </div>
 </asp:Content>
 
