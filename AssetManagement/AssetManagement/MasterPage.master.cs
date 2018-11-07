@@ -24,6 +24,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (Cookie != null)
         {
             Cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(Cookie);
         }
         FormsAuthentication.SignOut();
         Response.Redirect("Login.aspx");

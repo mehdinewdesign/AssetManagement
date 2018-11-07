@@ -18,6 +18,7 @@
             </div>
             <asp:TextBox ID="TxtQuantity" runat="server" CssClass="form-control col-7"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ForeColor="Red" ControlToValidate="TxtQuantity" Display="Static" runat="server" ErrorMessage="Quantity Cannot Be Empty"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationExpression="[0-9]+" ForeColor="Red" ControlToValidate="TxtQuantity" Display="Static" runat="server" ErrorMessage="Enter Numeric Value"></asp:RegularExpressionValidator>
         </div>
         <div class="row offset-4">
             <asp:Button ID="BtnInsert" runat="server" OnClick="BtnInsert_Click" CssClass="btn btn-primary" Text="Insert" />

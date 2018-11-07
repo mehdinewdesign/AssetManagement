@@ -21,7 +21,7 @@
                 <label for="date1">Start Date</label>
             </div>
             <asp:TextBox ID="TxtStartDate" TextMode="Date" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="Rfv2" ControlToValidate="TxtStartDate" runat="server" ForeColor="Red" ErrorMessage="Enter Start Date"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="Rfv2" ControlToValidate="TxtStartDate" runat="server" ForeColor="Red" ErrorMessage="Enter Start Date"></asp:RequiredFieldValidator>            
         </div>
         <div class="form-group row">
             <div class="col-3">
@@ -29,6 +29,7 @@
             </div>
             <asp:TextBox ID="TxtEndDate" TextMode="Date" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="Rfv3" ControlToValidate="TxtEndDate" runat="server" ForeColor="Red" ErrorMessage="Enter End Date"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="Cv1" runat="server" ForeColor="Red" Operator="GreaterThan" Type="Date" ControlToValidate="TxtEndDate" ControlToCompare="TxtStartDate" ErrorMessage="Invalid Date"></asp:CompareValidator>
         </div>
         <div class="row offset-4">
             <asp:Button ID="BtnSubmit" OnClick="BtnSubmit_Click" runat="server" Text="Generate Report" />
